@@ -1,4 +1,3 @@
-Cannot call proc with the tag Unsafe here	parachute.html#cannot-call-proc-with-the-tag-unsafe-here	 Cannot call proc with the tag <tt class="docutils literal"><span class="pre">Unsafe</span></tt> here	
 Unsafe	parachute.html#Unsafe	parachute: Unsafe	
 unsafe	parachute.html#unsafe.t	parachute: unsafe(body)	
 addrTag	parachute.html#addrTag,T	parachute: addrTag[T](x: var T): ptr T	

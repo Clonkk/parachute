@@ -16,7 +16,7 @@ After that, it is trivial to allow/forbid tags at compile time.
 To avoid having to change too much your code, there is a small macro ``openParachute()`` which declare ``addr`` and ``unsafeAddr`` as templates.
 Since ``addr`` cannot be overloaded, it will have to be excluded from ``system``.
 
-In short, if you want to use the tagged version of ``addr`` and ``unsafeAddr`` do the following in your file : 
+In short, if you want to use the tagged version of ``addr`` and ``unsafeAddr`` do the following in your file :
 
 ```nim
 import system except addr
@@ -39,3 +39,9 @@ Since ``cast`` is a keyword of the language, it cannot be replaced or used as an
 This means that for use the tagged version of cast you have to explicitly call ``castTag``.
 
 But since ``cast`` is most often called in conjonction with ``addr`` or ``unsafeAddr``, it should be too impactful.
+
+# Documentations and examples
+
+The documentation is accessible `here <https://clonkk.github.io/parachute/>`_ .
+
+Look into the ``tests/`` folder for more elaborate examples.
