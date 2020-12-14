@@ -16,7 +16,7 @@ proc classicProc() =
 
   block:
     var x = 14
-    use_safeCast(x)
+    use_castTag(x)
 
   block:
     var x ="123"
@@ -30,7 +30,7 @@ proc explicitUnsafeProc() {.tags: [Unsafe].} =
 
   block:
     var x = 14
-    use_safeCast(x)
+    use_castTag(x)
 
   block:
     var x ="123"

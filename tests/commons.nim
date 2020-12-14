@@ -1,10 +1,8 @@
-# Remove addr from scope
-import system except addr, unsafeAddr
+# Remove addr from scope since it can't be overloaded
+import system except addr
 import parachute
-
-# Beware, openParachute replace addr and unsafeAddr
-# template addr = parachute.addr
-# template unsafeAddr = parachute.unsafeAddr
+# Replace addr & unsafeAddr
+# Since cast is a keyword of the language it is impossible to replace it
 openParachute()
 
 proc use_addr*(x : var seq[int])=
@@ -15,13 +13,12 @@ proc use_unsafeAddr*(x : var seq[int])=
   let y = unsafeAddr(x)
   echo y.repr
 
-proc use_safeCast*(x: var int) =
-  let y = safeCast[float](x)
+proc use_castTag*(x: var int) =
+  let y = castTag[float](x)
   echo y
 
 proc use_unsafeTemplate*(x: string) =
   unsafe:
     echo "This is echo from unsafe zone"
     echo x
-
 

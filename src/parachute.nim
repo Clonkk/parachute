@@ -2,35 +2,41 @@ import macros
 type Unsafe* = object
 
 template unsafe*(body) =
+  ## Mark the outer scope as unsafe
   {.push tags:[Unsafe] .}
   body
   {.pop.}
 
-template safe*(body) =
-  {.push tags:[] .}
-  body
-  {.pop.}
-
-proc addrTagged*[T](x: var T): ptr T {.tags: [Unsafe].}=
+proc addrTag*[T](x: var T): ptr T {.tags: [Unsafe].}=
+  ## Used exactly like ``addr``
   result = system.addr(x)
 
-proc unsafeAddrTagged*[T](x: var T): ptr T {.tags: [Unsafe].}=
+proc unsafeAddrTag*[T](x: var T): ptr T {.tags: [Unsafe].}=
+  ## Used exactly like ``unsafeAddr``
   result = system.unsafeAddr(x)
 
+# No choice but to use this one explicitly
+template castTag*[T](expr) : T =
+  ## Used exactly like ``cast``
+  runnableExamples:
+    var x : int = 123456789
+    let y = castTag[float](x)
 
-# No choise but to rename since cast a reserved word
-template castTagged*[T](expr) : T =
   {.push tags:[Unsafe] .}
   let res = cast[T](expr)
   {.pop.}
   res
 
-template addr* = addr_tagged
-template unsafeAddr* = unsafeAddr_tagged
-
 macro openParachute*() : untyped =
-  result = newStmtList()
+  runnableExamples:
+    # Used to replace addr and unsafeAddr
+    import system except addr
+    import parachute
+    openParachute
 
+  result = newStmtList()
   result.add quote do:
-    template addr = parachute.safeAddr
-    template unsafeAddr = parachute.unsafeAddr
+    template addr(x) : untyped =
+      parachute.addrTag(x)
+    template unsafeAddr(x) : untyped =
+      parachute.unsafeAddrTag(x)
