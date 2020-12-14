@@ -49,3 +49,12 @@ Documentations and examples
 The documentation is accessible `here <https://clonkk.github.io/parachute/>`_ .
 
 Look into the ``tests/`` folder for more elaborate examples.
+
+
+Improvements
+############
+
+What really would improve this concept would be: 
+
+* Being able to remove a tag. This would make wrapping unsafe code a breeze !
+* Being able to "forbid" a tag without filtering every offet effects. Something like ``{.tags: [not Unsafe].}`` to explicitly forbid a tags without failing to compile on others.
