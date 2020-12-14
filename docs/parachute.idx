@@ -1,0 +1,6 @@
+Unsafe	parachute.html#Unsafe	parachute: Unsafe	
+unsafe	parachute.html#unsafe.t	parachute: unsafe(body)	
+addrTag	parachute.html#addrTag,T	parachute: addrTag[T](x: var T): ptr T	
+unsafeAddrTag	parachute.html#unsafeAddrTag,T	parachute: unsafeAddrTag[T](x: var T): ptr T	
+castTag	parachute.html#castTag.t	parachute: castTag[T](expr): T	
+openParachute	parachute.html#openParachute.m	parachute: openParachute(): untyped	

@@ -9,4 +9,7 @@ srcDir        = "src"
 
 # Dependencies
 
-requires "nim >= 1.4.2"
+requires "nim >= 1.4.0"
+
+task gendoc, "gen doc":
+    exec("nimble doc --project src/parachute.nim --out:docs/")
