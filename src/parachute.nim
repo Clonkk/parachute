@@ -1,18 +1,27 @@
 import macros
-type Unsafe* = object
+type
+  Unsafe* = object ## Type defined to be used with ``tags``, in order to track the Unsafe tags through procedure.
+    ##
+    ## .. code-block:: nim
+    ##   proc unsafeproc() {.tags: [Unsafe].} = # do unsafe stuff...
+    ##
+    ## Tracking tags that are not ``Unsafe`` or no tag at all will explicitly prevent the usage of the tag ``Unsafe`` during compilation.
+    ## .. code-block:: nim
+    ##   proc trackUnsafe() {.tags: []} =
+    ##     # Cannot call proc with the tag ``Unsafe`` here
 
 template unsafe*(body) =
-  ## Mark the outer scope as unsafe
+  ## Add the Unsafe tag. Equivalent to ``{.push: tags: [Unsafe].}``
   {.push tags:[Unsafe] .}
   body
   {.pop.}
 
 proc addrTag*[T](x: var T): ptr T {.tags: [Unsafe].}=
-  ## Used exactly like ``addr``
+  ## Used exactly like ``addr``.
   result = system.addr(x)
 
 proc unsafeAddrTag*[T](x: var T): ptr T {.tags: [Unsafe].}=
-  ## Used exactly like ``unsafeAddr``
+  ## Used exactly like ``unsafeAddr``.
   result = system.unsafeAddr(x)
 
 # No choice but to use this one explicitly
