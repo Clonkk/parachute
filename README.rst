@@ -26,12 +26,12 @@ Since ``addr`` cannot be overloaded, it will have to be excluded from ``system``
 
 In short, if you want to use the tagged version of ``addr`` and ``unsafeAddr`` do the following in your file :
 
-```nim
-import system except addr
-import parachute
-openParachute
+.. code-block:: nim
 
-```
+  import system except addr
+  import parachute
+  openParachute
+
 
 This way of doing things avoid exporting ``addr``and ``unsafeAddr`` identifier that would potentially collide.
 
