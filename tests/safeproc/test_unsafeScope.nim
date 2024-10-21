@@ -1,7 +1,7 @@
 discard """
   action: "reject"
 """
-import parachute
+import ../../parachute
 import ../commons
 
 proc unsafeProc() =
@@ -9,5 +9,7 @@ proc unsafeProc() =
     echo "This is unsafe"
 
 # Forbid unsafe usage
-proc safeProc() {.tags:[].} =
+proc safeProc() {.forbids:[Unsafe].} =
   unsafeProc()
+
+safeProc()

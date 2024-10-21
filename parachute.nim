@@ -21,31 +21,26 @@ type
                    ##     # Cannot call proc with the tag ``Unsafe`` here
                    ##     discard
 
-template unsafe*(body) =
-  ## Add the Unsafe tag. Equivalent to ``{.push: tags: [Unsafe].}``
-  {.push tags: [Unsafe].}
-  body
-  {.pop.}
-
 proc addrTag*[T](x: var T): ptr T {.tags: [Unsafe].} =
   ## Used exactly like ``addr``.
   result = system.addr(x)
 
-proc unsafeAddrTag*[T](x: var T): ptr T {.tags: [Unsafe].} =
+proc unsafeAddrTag*[T](x: T): ptr T {.tags: [Unsafe].} =
   ## Used exactly like ``unsafeAddr``.
-  result = system.unsafeAddr(x)
+  result = system.addr(x)
 
 # No choice but to use this one explicitly
-template castTag*[T](expr): T =
+template castTagImpl[T](expr): T =
+  let res = cast[T](expr)
+  res
+
+proc castTag*[T](expr: auto): T {.tags: [Unsafe]}=
   ## Used exactly like ``cast``
   runnableExamples:
     var x: int = 123456789
     let y = castTag[float](x)
 
-  {.push tags: [Unsafe].}
-  let res = cast[T](expr)
-  {.pop.}
-  res
+  castTagImpl[T](expr)
 
 macro openParachute*(): untyped =
   runnableExamples:
@@ -58,5 +53,6 @@ macro openParachute*(): untyped =
   result.add quote do:
     template addr(x): untyped =
       parachute.addrTag(x)
+
     template unsafeAddr(x): untyped =
       parachute.unsafeAddrTag(x)

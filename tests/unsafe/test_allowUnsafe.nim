@@ -1,7 +1,7 @@
 discard """
   action: "compile"
 """
-import parachute
+import ../../parachute
 import ../commons
 
 # Normal code
@@ -18,10 +18,6 @@ proc classicProc() =
     var x = 14
     use_castTag(x)
 
-  block:
-    var x ="123"
-    use_unsafeTemplate(x)
-
 # Explicitly unsafe code
 proc explicitUnsafeProc() {.tags: [Unsafe].} =
   block:
@@ -32,9 +28,6 @@ proc explicitUnsafeProc() {.tags: [Unsafe].} =
     var x = 14
     use_castTag(x)
 
-  block:
-    var x ="123"
-    use_unsafeTemplate(x)
-
 classicProc()
 explicitUnsafeProc()
+

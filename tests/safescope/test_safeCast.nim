@@ -3,9 +3,9 @@ discard """
 """
 import ../commons
 
-proc safeProc() =
-  {.push tags:[] .}
+proc safeProc() {.forbids:[Unsafe].}=
   var x = 1222
   use_castTag(x)
 
 safeProc()
+

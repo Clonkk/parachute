@@ -1,3 +1,10 @@
 nimcache
 testresults
 tests/bin
+tests/safeproc/test_safeCast
+tests/safeproc/test_unsafeAddr
+tests/safeproc/test_unsafeScope
+tests/safescope/test_safeCast
+tests/safescope/test_unsafeAddr
+tests/safescope/test_unsafeScope
+tests/unsafe/test_allowUnsafe

@@ -1,6 +1,6 @@
 # Remove addr from scope since it can't be overloaded
-import system except addr
-import parachute
+import system except addr, unsafeAddr
+import ../parachute
 # Replace addr & unsafeAddr
 # Since cast is a keyword of the language it is impossible to replace it
 openParachute()
@@ -17,8 +17,4 @@ proc use_castTag*(x: var int) =
   let y = castTag[float](x)
   echo y
 
-proc use_unsafeTemplate*(x: string) =
-  unsafe:
-    echo "This is echo from unsafe zone"
-    echo x
-
+export Unsafe
