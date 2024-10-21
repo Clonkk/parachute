@@ -1,6 +1,5 @@
 # Remove addr from scope since it can't be overloaded
-import system except addr
-import parachute
+import ../parachute
 # Replace addr & unsafeAddr
 # Since cast is a keyword of the language it is impossible to replace it
 openParachute()

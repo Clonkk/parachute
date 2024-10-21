@@ -1,7 +1,7 @@
 discard """
   action: "compile"
 """
-import parachute
+import ../../parachute
 import ../commons
 
 # Normal code

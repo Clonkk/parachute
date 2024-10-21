@@ -1,7 +1,7 @@
 discard """
   action: "reject"
 """
-import parachute
+import ../../parachute
 import ../commons
 
 proc unsafeProc() =
