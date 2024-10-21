@@ -1,2 +1,3 @@
 switch("path", "$projectDir/../src")
-switch("outdir", "tests/bin")
+when not defined(testing):
+  switch("outdir", "tests/bin")

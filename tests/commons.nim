@@ -1,4 +1,5 @@
 # Remove addr from scope since it can't be overloaded
+import system except addr
 import ../parachute
 # Replace addr & unsafeAddr
 # Since cast is a keyword of the language it is impossible to replace it
@@ -21,3 +22,4 @@ proc use_unsafeTemplate*(x: string) =
     echo "This is echo from unsafe zone"
     echo x
 
+export Unsafe

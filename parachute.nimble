@@ -14,6 +14,9 @@ task gendoc, "gen doc":
     exec("nimble doc --project src/parachute.nim --out:docs/")
 
 task runtest, "Run all tests":
+  exec "testament p \"tests/*/t*.nim\""
+
+task manualtest, "Run all tests":
      exec "nim c -r --mm:orc tests/safeproc/test_addr.nim"
      exec "nim c -r --mm:orc tests/safeproc/test_safeCast.nim"
      exec "nim c -r --mm:orc tests/safeproc/test_unsafeAddr.nim"

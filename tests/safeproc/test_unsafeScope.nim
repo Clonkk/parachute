@@ -9,5 +9,5 @@ proc unsafeProc() =
     echo "This is unsafe"
 
 # Forbid unsafe usage
-proc safeProc() {.tags:[].} =
+proc safeProc() {.forbids:[Unsafe].} =
   unsafeProc()

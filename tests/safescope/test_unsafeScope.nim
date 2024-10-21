@@ -3,8 +3,7 @@ discard """
 """
 import ../commons
 
-proc safeProc() =
-  {.push tags:[] .}
+proc safeProc() {.forbirds:[Unsafe].} =
   var x = "123"
   use_unsafeTemplate(x)
 
