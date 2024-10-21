@@ -9,7 +9,6 @@ A Nimble module when you need a parachute !
 
 This is a simple Nimble module that uses that uses `tag tracking <https://nim-lang.org/docs/manual.html#effect-system-tag-tracking>`_ to track usage of ``addr``, ``cast``, ``unsafeAddr``.
 
-It also defines ``unsafe`` template that simple ``{.push: tags[Unsafe].}`` to the scope.
 
 Usage
 #####
@@ -28,10 +27,11 @@ In short, if you want to use the tagged version of ``addr`` and ``unsafeAddr`` d
 
 .. code-block:: nim
 
-  import system except addr
+  import system except addr, unsafeAddr
   import parachute
   openParachute
 
+Note that unsafeAddr is deprecated, but is kept for backward compat.
 
 This way of doing things avoid exporting ``addr``and ``unsafeAddr`` identifier that would potentially collide.
 
@@ -50,11 +50,3 @@ The documentation is accessible `here <https://clonkk.github.io/parachute/>`_ .
 
 Look into the ``tests/`` folder for more elaborate examples.
 
-
-Improvements
-############
-
-What really would improve this concept would be: 
-
-* Being able to remove a tag. This would make wrapping unsafe code a breeze !
-* Being able to "forbid" a tag without filtering every offet effects. Something like ``{.tags: [not Unsafe].}`` to explicitly forbid a tags without failing to compile on others.

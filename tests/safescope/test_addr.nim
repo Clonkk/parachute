@@ -8,3 +8,4 @@ proc safeProc() {.forbids: [Unsafe].}=
   use_addr(x)
 
 safeProc()
+

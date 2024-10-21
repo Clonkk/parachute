@@ -8,3 +8,4 @@ proc safeProc() {.forbirds:[Unsafe].} =
   use_unsafeAddr(x)
 
 safeProc()
+

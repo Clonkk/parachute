@@ -11,3 +11,5 @@ proc unsafeProc() =
 # Forbid unsafe usage
 proc safeProc() {.forbids:[Unsafe].} =
   unsafeProc()
+
+safeProc()
